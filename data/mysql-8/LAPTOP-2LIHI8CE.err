@@ -1,0 +1,104 @@
+2025-05-05T14:58:38.249291Z 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2025-05-05T14:58:38.249684Z 0 [System] [MY-013169] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe (mysqld 8.0.30) initializing of server in progress as process 19568
+2025-05-05T14:58:41.397455Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+14:58:42 UTC - mysqld got exception 0x80000003 ;
+Most likely, you have hit a bug, but this error can also be caused by malfunctioning hardware.
+Thread pointer: 0x15bd39785b0
+Attempting backtrace. You can use the following information to find out
+where mysqld died. If you see no messages after this, something went
+terribly wrong...
+7ff7271b1402    mysqld.exe!?my_errno@@YAHXZ()
+7ff9ab5f1989    ucrtbase.dll!raise()
+7ff9ab5d4ab1    ucrtbase.dll!abort()
+7ff9ab5f19de    ucrtbase.dll!terminate()
+7ff9ab5e173a    ucrtbase.dll!__C_specific_handler_noexcept()
+7ff9ae1006ff    ntdll.dll!__chkstk()
+7ff9adfda328    ntdll.dll!RtlWow64GetCurrentCpuArea()
+7ff9adfd9336    ntdll.dll!RtlRaiseException()
+7ff9ab74933a    KERNELBASE.dll!RaiseException()
+7ff9a16c2610    VCRUNTIME140_1.dll!???
+7ff9ae0be416    ntdll.dll!RtlCaptureContext2()
+7ff72737de11    mysqld.exe!?deallocate@?$allocator@V?$sub_match@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@@std@@@std@@QEAAXQEAV?$sub_match@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@@2@_K@Z()
+7ff72737f560    mysqld.exe!?deallocate@?$allocator@V?$sub_match@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@@std@@@std@@QEAAXQEAV?$sub_match@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@@2@_K@Z()
+7ff7272c581f    mysqld.exe!??$endl@DU?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@@Z()
+7ff7272c4069    mysqld.exe!??$endl@DU?$char_traits@D@std@@@std@@YAAEAV?$basic_ostream@DU?$char_traits@D@std@@@0@AEAV10@@Z()
+7ff7273850a0    mysqld.exe!?deallocate@?$allocator@V?$sub_match@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@@std@@@std@@QEAAXQEAV?$sub_match@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@@2@_K@Z()
+7ff727293b94    mysqld.exe!?set_compression_level@Zstd_comp@compression@transaction@binary_log@@UEAAXI@Z()
+7ff72728e4be    mysqld.exe!?set_compression_level@Zstd_comp@compression@transaction@binary_log@@UEAAXI@Z()
+7ff72712ae19    mysqld.exe!?init@Rpl_info_values@@QEAA_NXZ()
+7ff72712d9fb    mysqld.exe!?init@Rpl_info_values@@QEAA_NXZ()
+7ff7261bd1fe    mysqld.exe!?run_bootstrap_thread@bootstrap@@YA_NPEBDPEAUMYSQL_FILE@@P6A_NPEAVTHD@@@ZW4enum_thread_type@@@Z()
+7ff7275f87a9    mysqld.exe!?deallocate@?$allocator@V?$sub_match@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@@std@@@std@@QEAAXQEAV?$sub_match@V?$_String_const_iterator@V?$_String_val@U?$_Simple_types@D@std@@@std@@@std@@@2@_K@Z()
+7ff7271b139c    mysqld.exe!?my_thread_self_setname@@YAXPEBD@Z()
+7ff9ab5337b0    ucrtbase.dll!wcsrchr()
+7ff9abdce8d7    KERNEL32.DLL!BaseThreadInitThunk()
+7ff9ae0514fc    ntdll.dll!RtlUserThreadStart()
+
+Trying to get some variables.
+Some pointers may be invalid and cause the dump to abort.
+Query (0): 
+Connection ID (thread ID): 1
+Status: NOT_KILLED
+
+The manual page at http://dev.mysql.com/doc/mysql/en/crashing.html contains
+information that should help you find out what is causing the crash.
+2025-05-05T15:08:50.260840Z 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2025-05-05T15:08:50.261267Z 0 [System] [MY-013169] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe (mysqld 8.0.30) initializing of server in progress as process 19284
+2025-05-05T15:08:50.299308Z 0 [ERROR] [MY-010457] [Server] --initialize specified but the data directory has files in it. Aborting.
+2025-05-05T15:08:50.317034Z 0 [ERROR] [MY-013236] [Server] The designated data directory C:\Users\krave\Desktop\4th\data\mysql-8\ is unusable. You can remove all files that the server added to it.
+2025-05-05T15:08:50.321472Z 0 [ERROR] [MY-010119] [Server] Aborting
+2025-05-05T15:08:50.326029Z 0 [System] [MY-010910] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe: Shutdown complete (mysqld 8.0.30)  MySQL Community Server - GPL.
+2025-05-05T15:11:23.315401Z 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2025-05-05T15:11:23.315805Z 0 [System] [MY-013169] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe (mysqld 8.0.30) initializing of server in progress as process 20252
+2025-05-05T15:11:23.330737Z 0 [ERROR] [MY-010457] [Server] --initialize specified but the data directory has files in it. Aborting.
+2025-05-05T15:11:23.331371Z 0 [ERROR] [MY-013236] [Server] The designated data directory C:\Users\krave\Desktop\4th\data\mysql-8\ is unusable. You can remove all files that the server added to it.
+2025-05-05T15:11:23.335791Z 0 [ERROR] [MY-010119] [Server] Aborting
+2025-05-05T15:11:23.342384Z 0 [System] [MY-010910] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe: Shutdown complete (mysqld 8.0.30)  MySQL Community Server - GPL.
+2025-05-05T15:11:30.927899Z 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2025-05-05T15:11:30.927917Z 0 [System] [MY-013169] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe (mysqld 8.0.30) initializing of server in progress as process 20392
+2025-05-05T15:11:30.930093Z 0 [ERROR] [MY-010457] [Server] --initialize specified but the data directory has files in it. Aborting.
+2025-05-05T15:11:30.930371Z 0 [ERROR] [MY-013236] [Server] The designated data directory C:\Users\krave\Desktop\4th\data\mysql-8\ is unusable. You can remove all files that the server added to it.
+2025-05-05T15:11:30.933326Z 0 [ERROR] [MY-010119] [Server] Aborting
+2025-05-05T15:11:30.933513Z 0 [System] [MY-010910] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe: Shutdown complete (mysqld 8.0.30)  MySQL Community Server - GPL.
+2025-05-05T16:14:25.054574Z 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2025-05-05T16:14:25.055209Z 0 [System] [MY-013169] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe (mysqld 8.0.30) initializing of server in progress as process 15004
+2025-05-05T16:14:25.079514Z 0 [ERROR] [MY-010457] [Server] --initialize specified but the data directory has files in it. Aborting.
+2025-05-05T16:14:25.080592Z 0 [ERROR] [MY-013236] [Server] The designated data directory C:\Users\krave\Desktop\4th\data\mysql-8\ is unusable. You can remove all files that the server added to it.
+2025-05-05T16:14:25.089119Z 0 [ERROR] [MY-010119] [Server] Aborting
+2025-05-05T16:14:25.099271Z 0 [System] [MY-010910] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe: Shutdown complete (mysqld 8.0.30)  MySQL Community Server - GPL.
+2025-05-06T02:05:02.998668Z 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2025-05-06T02:05:02.999101Z 0 [System] [MY-013169] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe (mysqld 8.0.30) initializing of server in progress as process 21132
+2025-05-06T02:05:03.004083Z 0 [ERROR] [MY-010457] [Server] --initialize specified but the data directory has files in it. Aborting.
+2025-05-06T02:05:03.004833Z 0 [ERROR] [MY-013236] [Server] The designated data directory C:\Users\krave\Desktop\4th\data\mysql-8\ is unusable. You can remove all files that the server added to it.
+2025-05-06T02:05:03.009881Z 0 [ERROR] [MY-010119] [Server] Aborting
+2025-05-06T02:05:03.019625Z 0 [System] [MY-010910] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe: Shutdown complete (mysqld 8.0.30)  MySQL Community Server - GPL.
+2025-05-06T02:08:24.101663Z 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2025-05-06T02:08:24.101696Z 0 [System] [MY-013169] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe (mysqld 8.0.30) initializing of server in progress as process 17404
+2025-05-06T02:08:24.105446Z 0 [ERROR] [MY-010457] [Server] --initialize specified but the data directory has files in it. Aborting.
+2025-05-06T02:08:24.105929Z 0 [ERROR] [MY-013236] [Server] The designated data directory C:\Users\krave\Desktop\4th\data\mysql-8\ is unusable. You can remove all files that the server added to it.
+2025-05-06T02:08:24.111799Z 0 [ERROR] [MY-010119] [Server] Aborting
+2025-05-06T02:08:24.112148Z 0 [System] [MY-010910] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe: Shutdown complete (mysqld 8.0.30)  MySQL Community Server - GPL.
+2025-05-06T02:10:20.103361Z 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2025-05-06T02:10:20.103402Z 0 [System] [MY-013169] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe (mysqld 8.0.30) initializing of server in progress as process 20396
+2025-05-06T02:10:20.107750Z 0 [ERROR] [MY-010457] [Server] --initialize specified but the data directory has files in it. Aborting.
+2025-05-06T02:10:20.108326Z 0 [ERROR] [MY-013236] [Server] The designated data directory C:\Users\krave\Desktop\4th\data\mysql-8\ is unusable. You can remove all files that the server added to it.
+2025-05-06T02:10:20.114906Z 0 [ERROR] [MY-010119] [Server] Aborting
+2025-05-06T02:10:20.115414Z 0 [System] [MY-010910] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe: Shutdown complete (mysqld 8.0.30)  MySQL Community Server - GPL.
+2025-05-06T07:36:10.093386Z 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2025-05-06T07:36:10.093421Z 0 [System] [MY-013169] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe (mysqld 8.0.30) initializing of server in progress as process 23108
+2025-05-06T07:36:10.098787Z 0 [ERROR] [MY-010457] [Server] --initialize specified but the data directory has files in it. Aborting.
+2025-05-06T07:36:10.100402Z 0 [ERROR] [MY-013236] [Server] The designated data directory C:\Users\krave\Desktop\4th\data\mysql-8\ is unusable. You can remove all files that the server added to it.
+2025-05-06T07:36:10.108471Z 0 [ERROR] [MY-010119] [Server] Aborting
+2025-05-06T07:36:10.120074Z 0 [System] [MY-010910] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe: Shutdown complete (mysqld 8.0.30)  MySQL Community Server - GPL.
+2025-05-07T00:22:03.915101Z 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2025-05-07T00:22:03.915143Z 0 [System] [MY-013169] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe (mysqld 8.0.30) initializing of server in progress as process 14592
+2025-05-07T00:22:03.960605Z 0 [ERROR] [MY-010457] [Server] --initialize specified but the data directory has files in it. Aborting.
+2025-05-07T00:22:03.984889Z 0 [ERROR] [MY-013236] [Server] The designated data directory C:\Users\krave\Desktop\4th\data\mysql-8\ is unusable. You can remove all files that the server added to it.
+2025-05-07T00:22:03.991075Z 0 [ERROR] [MY-010119] [Server] Aborting
+2025-05-07T00:22:03.991390Z 0 [System] [MY-010910] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe: Shutdown complete (mysqld 8.0.30)  MySQL Community Server - GPL.
+2025-05-07T02:29:41.771906Z 0 [Warning] [MY-010918] [Server] 'default_authentication_plugin' is deprecated and will be removed in a future release. Please use authentication_policy instead.
+2025-05-07T02:29:41.771924Z 0 [System] [MY-013169] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe (mysqld 8.0.30) initializing of server in progress as process 16528
+2025-05-07T02:29:41.792218Z 0 [ERROR] [MY-010457] [Server] --initialize specified but the data directory has files in it. Aborting.
+2025-05-07T02:29:41.805481Z 0 [ERROR] [MY-013236] [Server] The designated data directory C:\Users\krave\Desktop\4th\data\mysql-8\ is unusable. You can remove all files that the server added to it.
+2025-05-07T02:29:41.809347Z 0 [ERROR] [MY-010119] [Server] Aborting
+2025-05-07T02:29:41.809522Z 0 [System] [MY-010910] [Server] C:\laragon\bin\mysql\mysql-8.0.30-winx64\bin\mysqld.exe: Shutdown complete (mysqld 8.0.30)  MySQL Community Server - GPL.
