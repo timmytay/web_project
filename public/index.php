@@ -1,59 +1,5 @@
 <?php
 require_once '../vendor/autoload.php';
-require_once "../controllers/MainController.php";
-$context = []; 
-
-$controller = null; // создаем переменную под контроллер
-
-if ($url == "/") {
-    $controller = new MainController($twig); // создаем экземпляр контроллера для главной страницы
-} elseif (preg_match("#^/andromeda#", $url)) {
-} elseif (preg_match("#^/orion#", $url)) {
-} 
-
-/* УБИРАЕМ
-$context['title'] = $title; 
-
-echo $twig->render($template, $context);
-*/
-
-// проверяем если controller не пустой, то рендерим страницу
-if ($controller) {
-    $controller->get();
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $loader = new \Twig\Loader\FilesystemLoader('../views');
 $twig = new \Twig\Environment($loader);
 
