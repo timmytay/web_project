@@ -1,5 +1,14 @@
 <?php
 require_once '../vendor/autoload.php';
+require_once '../controllers/MainController.php';
+require_once '../controllers/WhiteBreadController.php';
+require_once '../controllers/WhiteBreadImageController.php';
+require_once '../controllers/WhiteBreadInfoController.php';
+require_once '../controllers/RyeBreadController.php';
+require_once '../controllers/RyeBreadImageController.php';
+require_once '../controllers/RyeBreadInfoController.php';
+require_once "../controllers/Controller404.php";
+
 $loader = new \Twig\Loader\FilesystemLoader('../views');
 $twig = new \Twig\Environment($loader);
 
@@ -8,58 +17,29 @@ $title = "";
 $url_title = "";
 $template = "";
 $context = [];
+
+$controller = new Controller404($twig);
 if ($url == "/") {
-    $template = "main.twig";
-    $title = "Главная";
-$context['menu_items' ] = [
-    [
-        "title" => "Белый хлеб",
-        "url_title" => "white_bread",
-    ],
-    [
-        "title" => "Ржаной хлеб",
-        "url_title" => "rye_bread",
-    ],
-];
-
-} elseif (preg_match("#^/white_bread#", $url)) {
-    $template = "__object.twig";
-    $title = "Белый хлеб";
-
-    $context['url_title'] = "white_bread";
-    $is_info = $url == '/white_bread/info';
-    $is_image = $url == '/white_bread/image';
-
-    $context['is_info'] = $is_info;
-    $context['is_image'] = $is_image;
-
-    if ($is_image) {
-        $template = "image.twig";
-        $context['image_url'] = '/images/white_bread.png';
-    }
-    elseif ($is_info) {
-
-        $template = "white_bread_info.twig";
-        }
-} elseif (preg_match("#^/rye_bread#", $url)) {
-    $template = "__object.twig";
-    $title = "Ржаной хлеб";
-
-    $context['url_title'] = "rye_bread";
-    $is_info = $url == '/rye_bread/info';
-    $is_image = $url == '/rye_bread/image';
-
-    $context['is_info'] = $is_info;
-    $context['is_image'] = $is_image;
-
-    if ($is_image) {
-        $template = "image.twig";
-        $context['image_url'] = '/images/rye_bread.png';        
-    }
-    elseif ($is_info) {
-        $template = "rye_bread_info.twig";
-        }
+    $controller = new MainController($twig);
 }
+ elseif (preg_match("#^/white_bread/image#", $url)) {
+    $controller = new WhiteBreadImageController($twig);
+ } elseif (preg_match("#^/white_bread/info#", $url)) {
+     $controller = new WhiteBreadInfoController($twig);
+ } elseif (preg_match("#^/white_bread#", $url)) {
+     $controller = new WhiteBreadController($twig);
+ } 
 
-$context['title'] = $title;
-echo $twig->render($template, $context);
+
+  elseif (preg_match("#^/rye_bread/image#", $url)) {
+    $controller = new RyeBreadImageController($twig);
+ } elseif (preg_match("#^/rye_bread/info#", $url)) {
+     $controller = new RyeBreadInfoController($twig);
+ } elseif (preg_match("#^/rye_bread#", $url)) {
+     $controller = new RyeBreadController($twig);
+ } 
+
+
+if ($controller) {
+    $controller->get();
+}

@@ -1,15 +1,14 @@
 <?php
 require_once "BaseController.php";
-
 class TwigBaseController extends BaseController {
     public $title = "";
     public $template = "";
+    public $url_title = "";
     protected \Twig\Environment $twig;
     public function __construct($twig)
     {
         $this->twig = $twig;
     }
-    
     public function getContext() : array
     {
         $context = parent::getContext();
@@ -17,7 +16,6 @@ class TwigBaseController extends BaseController {
 
         return $context;
     }
-    
     public function get() {
         echo $this->twig->render($this->template, $this->getContext());
     }
