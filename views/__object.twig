@@ -1,12 +1,14 @@
 {% extends "__layout.twig" %}
+{% import 'macros.twig' as macros %}
+
 {% block content %}
-<h1> {{title}} </h1>
+<h1>{{ title }}</h1>
 <ul class="nav nav-pills">
     <li class="nav-item">
-        <a class="nav-link {{ is_image ? 'active' : '' }}" href="/{{ url_title }}/image">Картинка</a>
+        {{ macros.btn("Картинка", '/' ~ url_title ~ '/image', is_image, 'link') }}
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ is_info ? 'active' : '' }}" href="/{{ url_title }}/info">Описание</a>
+        {{ macros.btn("Описание", '/' ~ url_title ~ '/info', is_info, 'link') }}
     </li>
 </ul>
 

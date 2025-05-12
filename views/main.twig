@@ -1,14 +1,15 @@
 {% extends "__layout.twig" %}
+{% import 'macros.twig' as macros %}
 
 {% block content %}
-	<ul class="list-group">
-		{% for item in menu_items %}
-			<li class="list-group-item">
-				<h1>{{item.title}}</h1>
-				<a type="button" href="/{{item.url_title}}" class="btn btn-outline-primary">{{item.title}}</a>
-				<a class="btn btn-outline-secondary" href="/{{item.url_title}}/image">Картинка</a>
-				<a class="btn btn-outline-info" href="/{{item.url_title}}/item">Описание</a>
-			</li>
-		{% endfor %}
-	</ul>
+    <ul class="list-group">
+        {% for item in menu_items %}
+            <li class="list-group-item">
+                <h1>{{ item.title }}</h1>
+                {{ macros.btn(item.title, '/' ~ item.url_title, true, 'outline-primary') }}
+                {{ macros.btn("Картинка", '/' ~ item.url_title ~ '/image', true, 'outline-secondary') }}
+                {{ macros.btn("Описание", '/' ~ item.url_title ~ '/item', true, 'outline-info') }}
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
