@@ -9,16 +9,11 @@ class MainController extends TwigBaseController
     public function getContext(): array
     {
         $context = parent::getContext();
-        $context['menu_items'] = [
-            [
-                "title" => "Белый хлеб",
-                "url_title" => "white_bread",
-            ],
-            [
-                "title" => "Ржаной хлеб",
-                "url_title" => "rye_bread",
-            ],
-        ];
+         $query = $this->pdo->query("SELECT * FROM bread_types");
+        
+        // стягиваем данные через fetchAll() и сохраняем результат в контекст
+        $context['bread_types'] = $query->fetchAll();
+
         return $context;
     }
 }
