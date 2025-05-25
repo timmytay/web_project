@@ -1,12 +1,17 @@
 <?php
 
 abstract class BaseController {
-    public PDO $pdo; // добавил поле
+    public PDO $pdo;
+    public array $params;
 
-    public function setPDO(PDO $pdo) { // и сеттер для него
+    public function setPDO(PDO $pdo) {
         $this->pdo = $pdo;
     }
-    // остальное не трогаем
+
+    public function setParams(array $params) {
+        $this->params = $params;
+    }
+
     public function getContext(): array {
         return [];
     }

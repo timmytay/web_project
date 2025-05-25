@@ -1,8 +1,0 @@
-<!-- image_operator.twig -->
-{% macro img_cropped(image_url, width=300, height=300, class_name='') %}
-    <img src="{{ image_url }}"
-         style="width: {{ width }}px; height: {{ height }}px; object-fit: cover;"
-         class="{{ class_name }}"
-         alt=""
-    />
-{% endmacro %}
