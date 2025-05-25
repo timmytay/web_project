@@ -9,8 +9,9 @@
             <label for="type" class="form-label">Тип хлеба</label>
             <select name="type" class="form-select" id="type">
                 <option value="">Все</option>
-                <option value="бездрожжевые" {% if type == 'бездрожжевые' %}selected{% endif %}>Бездрожжевые</option>
-                <option value="дрожжевые" {% if type == 'дрожжевые' %}selected{% endif %}>Дрожжевые</option>
+                {% for variant in variants %}
+                    <option value="{{ variant.id }}" {% if type == variant.id %}selected{% endif %}>{{ variant.name }}</option>
+                {% endfor %}
             </select>
         </div>
         
@@ -37,7 +38,13 @@
                     <a href="/bread-object/{{ object.id }}" class="list-group-item list-group-item-action">
                         <h5>{{ object.title }}</h5>
                         <p class="mb-1">{{ object.description }}</p>
-                        <small class="text-muted">Тип: {{ object.type }}</small>
+                        <small class="text-muted">Тип: 
+                            {% for variant in variants %}
+                                {% if variant.id == object.type %}
+                                    {{ variant.name }}
+                                {% endif %}
+                            {% endfor %}
+                        </small>
                     </a>
                 {% endfor %}
             </div>

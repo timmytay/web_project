@@ -1,7 +1,7 @@
 <?php
 class ImageController extends TwigBaseController
 {
-    public $template = "image.twig"; // шаблон для изображений
+    public $template = "image.twig";
 
     public function getContext(): array
     {

@@ -1,13 +1,12 @@
 <?php
 
 class BaseBreadTwigController extends TwigBaseController {
-    public function getContext(): array
-    {
+    public function getContext(): array {
         $context = parent::getContext();
 
-        $query = $this-> pdo->query("SELECT DISTINCT type FROM bread_types ORDER BY 1");
+        $query = $this->pdo->query("SELECT id, name, image FROM bread_variants ORDER BY name");
         $types = $query->fetchAll();
-        $context['types'] = $types;
+        $context['variants'] = $types;
 
         return $context;
     }

@@ -26,11 +26,12 @@ class SearchController extends BaseBreadTwigController
 
         if ($search_performed) {
             $sql = <<<EOL
-            SELECT id, title, description, type
-            FROM bread_types
-            WHERE (:title = '' OR title like CONCAT('%', :title, '%'))
-            AND (:type = '' OR type = :type)
-            AND (:description = '' OR description like CONCAT('%', :description, '%'))
+            SELECT b.id, b.title, b.description, b.type, v.name as type_name
+            FROM bread_types b
+            LEFT JOIN bread_variants v ON b.type = v.id
+            WHERE (:title = '' OR b.title like CONCAT('%', :title, '%'))
+            AND (:type = '' OR b.type = :type)
+            AND (:description = '' OR b.description like CONCAT('%', :description, '%'))
             EOL;
 
             $query = $this->pdo->prepare($sql);

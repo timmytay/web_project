@@ -1,0 +1,36 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    
+    {% if message %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endif %}
+    
+    <h2>Добавить новый тип</h2>
+    <form method="POST" enctype="multipart/form-data" class="mb-5">
+        <div class="mb-3">
+            <label class="form-label">Название типа</label>
+            <input type="text" class="form-control" name="name" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Изображение</label>
+            <input type="file" class="form-control" name="image" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Добавить</button>
+    </form>
+    
+    <h2>Существующие типы</h2>
+    <div class="row">
+        {% for variant in variants %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ variant.image }}" class="card-img-top" alt="{{ variant.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ variant.name }}</h5>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

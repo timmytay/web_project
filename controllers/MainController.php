@@ -12,9 +12,7 @@ class MainController extends BaseBreadTwigController
             $query = $this->pdo->prepare("SELECT * FROM bread_types WHERE type = :type");
             $query->bindValue("type", $_GET['type']);
             $query->execute();
-        }
-        else
-        {
+        } else {
             $query = $this->pdo->query("SELECT * FROM bread_types");
         }
         $context['bread_types'] = $query->fetchAll();

@@ -23,13 +23,19 @@
 						<li class="nav-item">
 							<a class="nav-link" aria-current="page" href="/">Главная</a>
 						</li>
-						{% for type in types %}
+						{% for variant in variants %}
 							<li class="nav-item">
-								<a class="nav-link" href="/?type={{ type.type }}">{{ type.type|title }}</a>
+								<a class="nav-link" href="/?type={{ variant.id }}">{{ variant.name }}</a>
 							</li>
 						{% endfor %}
 						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="/search">Поиск</a>
+							<a class="nav-link" href="/search">Поиск</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/bread-object/create">Добавить хлеб</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/bread-variants">Управление типами</a>
 						</li>
 					</ul>
 				</div>

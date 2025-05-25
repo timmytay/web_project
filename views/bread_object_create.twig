@@ -1,0 +1,44 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+	<h1>Добавление объекта хлеба</h1>
+	<hr>
+
+	{% if message %}
+		<div class="alert alert-info">
+			{{message}}
+			<a href="/bread-object/{{id}}">Открыть новый объект</a>
+		</div>
+	{% endif %}
+
+	<form action="" enctype="multipart/form-data" method="POST" class="row g-3">
+		<div class="col-4">
+			<label class="form-label">Название</label>
+			<input type="text" class="form-control" name="title">
+		</div>
+		<div class="col-4">
+			<label class="form-label">Краткое описание</label>
+			<input type="text" class="form-control" name="description">
+		</div>
+		<div class="col-4">
+			<label class="form-label">Тип</label>
+			<select class="form-control" name="type" required>
+				<option value="">Выберите тип</option>
+				{% for variant in variants %}
+					<option value="{{ variant.id }}">{{ variant.name }}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<div class="mb-3">
+			<label class="form-label">Картинка</label>
+			<input class="form-control" type="file" name="image">
+		</div>
+		<div class="col-12">
+			<textarea name="info" placeholder="Полное описание..." class="form-control" rows="5"></textarea>
+		</div>
+		<div class="col-12 text-end">
+			<button type="submit" class="btn btn-primary">Добавить</button>
+		</div>
+	</form>
+
+{% endblock %}
