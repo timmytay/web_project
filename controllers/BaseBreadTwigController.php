@@ -8,6 +8,14 @@ class BaseBreadTwigController extends TwigBaseController {
         $types = $query->fetchAll();
         $context['variants'] = $types;
 
+        // Добавляем поддержку flash-сообщений
+        if (isset($_SESSION['message'])) {
+            $context['message'] = $_SESSION['message'];
+            $context['message_type'] = $_SESSION['message_type'] ?? 'success';
+            unset($_SESSION['message']);
+            unset($_SESSION['message_type']);
+        }
+
         return $context;
     }
 }

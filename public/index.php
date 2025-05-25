@@ -8,6 +8,8 @@ require_once '../controllers/ObjectController.php';
 require_once '../controllers/SearchController.php';
 require_once '../controllers/BreadObjectCreateController.php';
 require_once '../controllers/BreadVariantController.php';
+require_once '../controllers/BreadObjectDeleteController.php';
+require_once '../controllers/BreadVariantDeleteController.php';
 
 $loader = new \Twig\Loader\FilesystemLoader('../views');
 $twig = new \Twig\Environment($loader, [
@@ -26,6 +28,8 @@ $router->add("/search", SearchController::class);
 $router->add("/bread-object/create", BreadObjectCreateController::class);
 
 $router->add("/bread-variants", BreadVariantController::class);
+
+$router->add("/bread-variant/(?P<id>\d+)/delete", BreadVariantDeleteController::class);
 
 $router->add("/404", Controller404::class);
 

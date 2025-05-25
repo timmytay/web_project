@@ -1,13 +1,11 @@
 {% extends "__layout.twig" %}
 
 {% block content %}
-    <h1>{{ title }}</h1>
+    <h1>Добавление типа</h1>
     
     {% if message %}
-        <div class="alert alert-success">{{ message }}</div>
+        <div class="alert alert-{{ message_type ?? 'success' }}">{{ message }}</div>
     {% endif %}
-    
-    <h2>Добавить новый тип</h2>
     <form method="POST" enctype="multipart/form-data" class="mb-5">
         <div class="mb-3">
             <label class="form-label">Название типа</label>
@@ -28,6 +26,12 @@
                     <img src="{{ variant.image }}" class="card-img-top" alt="{{ variant.name }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ variant.name }}</h5>
+                        <form action="/bread-variant/{{ variant.id }}/delete" method="POST" class="mt-2">
+                            <button type="submit" class="btn btn-danger btn-sm" 
+                                onclick="return confirm('Вы уверены, что хотите удалить этот тип хлеба?')">
+                                Удалить
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

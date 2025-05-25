@@ -31,7 +31,10 @@ class BreadVariantController extends BaseBreadTwigController {
         $query->bindValue("image", $image_url);
         $query->execute();
 
-        $context['message'] = 'Тип хлеба успешно добавлен';
-        $this->get($context);
+        $_SESSION['message'] = 'Тип хлеба успешно добавлен';
+        $_SESSION['message_type'] = 'success';
+        
+        header("Location: /bread-variants");
+        exit;
     }
 }
