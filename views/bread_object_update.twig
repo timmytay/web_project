@@ -1,0 +1,46 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+    <h1>Редактирование объекта хлеба</h1>
+    <hr>
+
+    {% if message %}
+        <div class="alert alert-{{ message_type ?? 'success' }}">
+            {{ message }}
+        </div>
+    {% endif %}
+
+    <form action="" enctype="multipart/form-data" method="POST" class="row g-3">
+        <div class="col-4">
+            <label class="form-label">Название</label>
+            <input type="text" class="form-control" name="title" value="{{ object.title }}">
+        </div>
+        <div class="col-4">
+            <label class="form-label">Краткое описание</label>
+            <input type="text" class="form-control" name="description" value="{{ object.description }}">
+        </div>
+        <div class="col-4">
+            <label class="form-label">Тип</label>
+            <select class="form-control" name="type" required>
+                <option value="">Выберите тип</option>
+                {% for variant in variants %}
+                    <option value="{{ variant.id }}" {% if variant.id == object.type %}selected{% endif %}>{{ variant.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Картинка (оставьте пустым, чтобы не изменять)</label>
+            <input class="form-control" type="file" name="image">
+            {% if object.image %}
+                <small class="text-muted">Текущее изображение: <a href="{{ object.image }}" target="_blank">просмотреть</a></small>
+            {% endif %}
+        </div>
+        <div class="col-12">
+            <textarea name="info" placeholder="Полное описание..." class="form-control" rows="5">{{ object.info }}</textarea>
+        </div>
+        <div class="col-12 text-end">
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+            <a href="/bread-object/{{ object.id }}" class="btn btn-secondary">Отмена</a>
+        </div>
+    </form>
+{% endblock %}

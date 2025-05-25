@@ -26,12 +26,17 @@
                     <img src="{{ variant.image }}" class="card-img-top" alt="{{ variant.name }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ variant.name }}</h5>
-                        <form action="/bread-variant/{{ variant.id }}/delete" method="POST" class="mt-2">
-                            <button type="submit" class="btn btn-danger btn-sm" 
-                                onclick="return confirm('Вы уверены, что хотите удалить этот тип хлеба?')">
-                                Удалить
-                            </button>
-                        </form>
+                        <div class="d-flex gap-2">
+                            <a href="/bread-variant/{{ variant.id }}/edit" class="btn btn-info btn-sm">
+                                Редактировать
+                            </a>
+                            <form action="/bread-variant/{{ variant.id }}/delete" method="POST" class="mt-2">
+                                <button type="submit" class="btn btn-danger btn-sm" 
+                                    onclick="return confirm('Вы уверены, что хотите удалить этот тип хлеба?')">
+                                    Удалить
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

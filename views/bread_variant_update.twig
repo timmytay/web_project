@@ -1,0 +1,25 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+    <h1>Редактирование типа хлеба</h1>
+    
+    {% if message %}
+        <div class="alert alert-{{ message_type ?? 'success' }}">{{ message }}</div>
+    {% endif %}
+    
+    <form method="POST" enctype="multipart/form-data" class="mb-5">
+        <div class="mb-3">
+            <label class="form-label">Название типа</label>
+            <input type="text" class="form-control" name="name" value="{{ variant.name }}" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Изображение (оставьте пустым, чтобы не изменять)</label>
+            <input type="file" class="form-control" name="image">
+            {% if variant.image %}
+                <small class="text-muted">Текущее изображение: <img src="{{ variant.image }}" style="max-height: 50px;"></small>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a href="/bread-variants" class="btn btn-secondary">Отмена</a>
+    </form>
+{% endblock %}

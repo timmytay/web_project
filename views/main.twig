@@ -6,6 +6,11 @@
 		{% for object in bread_types %}
 			<div class="col mb-4 d-flex align-items-stretch">
 				<div class="border p-2 flex-grow-1 d-flex flex-column justify-content-between position-relative">
+					<div class="position-absolute" style="left:4px; top:4px">
+						<a href="/bread-object/{{object.id}}/edit" class="btn btn-info">
+							<i class="fas fa-pencil"></i>
+						</a>
+					</div>
 					<div class="position-absolute" style="right:4px; top:4px">
 						<form action="/bread-object/{{object.id}}/delete" method="POST">
 							<button type="submit" class="btn btn-danger">
