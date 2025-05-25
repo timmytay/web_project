@@ -1,0 +1,49 @@
+{% extends "__layout.twig" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Поиск хлеба</h1>
+    
+    <form class="row g-3">
+        <div class="col-md-4">
+            <label for="type" class="form-label">Тип хлеба</label>
+            <select name="type" class="form-select" id="type">
+                <option value="">Все</option>
+                <option value="бездрожжевые" {% if type == 'бездрожжевые' %}selected{% endif %}>Бездрожжевые</option>
+                <option value="дрожжевые" {% if type == 'дрожжевые' %}selected{% endif %}>Дрожжевые</option>
+            </select>
+        </div>
+        
+        <div class="col-md-4">
+            <label for="title" class="form-label">Название</label>
+            <input type="text" class="form-control" name="title" id="title" value="{{ title }}">
+        </div>
+        
+        <div class="col-md-4">
+            <label for="description" class="form-label">Описание</label>
+            <input type="text" class="form-control" name="description" id="description" value="{{ description }}">
+        </div>
+        
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Найти</button>
+        </div>
+    </form>
+
+    {% if search_performed %}
+        <h2 class="mt-4">Результаты поиска</h2>
+        {% if objects %}
+            <div class="list-group">
+                {% for object in objects %}
+                    <a href="/bread-object/{{ object.id }}" class="list-group-item list-group-item-action">
+                        <h5>{{ object.title }}</h5>
+                        <p class="mb-1">{{ object.description }}</p>
+                        <small class="text-muted">Тип: {{ object.type }}</small>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-info mt-3">Ничего не найдено</div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}
