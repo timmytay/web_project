@@ -8,19 +8,19 @@ class ObjectController extends BaseBreadTwigController
     {
         $context = parent::getContext();
         $id = $this->params['id'] ?? null;
-        
+
         if ($id) {
             $stmt = $this->pdo->prepare("SELECT * FROM bread_types WHERE id = ?");
             $stmt->execute([$id]);
             $data = $stmt->fetch();
-            
+
             if ($data) {
                 $context['object'] = $data;
                 $this->title = $data['title'] ?? '';
                 $context['description'] = $data['description'];
                 $context['info'] = $data['info'];
                 $context['image_url'] = $data['image'];
-                
+
                 $show = $_GET['show'] ?? '';
                 if ($show === 'image') {
                     $context['is_image'] = true;
@@ -35,6 +35,8 @@ class ObjectController extends BaseBreadTwigController
             $context['object'] = null;
             $this->title = "ID не указан";
         }
+
+        $context["messages"] = isset($_SESSION['messages']) ? $_SESSION['messages'] : "";
 
         return $context;
     }

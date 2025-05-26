@@ -16,6 +16,9 @@ class BaseBreadTwigController extends TwigBaseController {
             unset($_SESSION['message_type']);
         }
 
+                // Добавляем историю посещений в контекст
+        $context['visit_history'] = $_SESSION['visit_history'] ?? [];
+        
         return $context;
     }
 }

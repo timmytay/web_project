@@ -3,6 +3,7 @@
 abstract class BaseController {
     public PDO $pdo;
     public array $params;
+    private static $sessionStarted = false; // Track if session was started
 
     public function setPDO(PDO $pdo) {
         $this->pdo = $pdo;
@@ -17,15 +18,22 @@ abstract class BaseController {
     }
 
     public function process_response() {
+        // Initialize session only once per request
+        if (!self::$sessionStarted) {
+            session_set_cookie_params(60*60*10); // 10 hours
+            session_start();
+            self::$sessionStarted = true;
+        }
+
         $method = $_SERVER['REQUEST_METHOD'];
-        $context = $this->getContext(); // вызываю context тут
+        $context = $this->getContext();
         if ($method == 'GET') {
-            $this->get($context); // а тут просто его пробрасываю внутрь
+            $this->get($context);
         } else if ($method == 'POST') {
-            $this->post($context); // и здесь
+            $this->post($context);
         }
     }
 
-    public function get(array $context) {} // ну и сюда добавил в качестве параметра 
-    public function post(array $context) {} // и сюда
+    public function get(array $context) {}
+    public function post(array $context) {}
 }

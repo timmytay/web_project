@@ -2,23 +2,32 @@
 {% import 'macros.twig' as macros %}
 
 {% block content %}
-    <h1>{{ title }}</h1>
-    <div class="d-flex justify-content-center mt-2">
-        {{ macros.btn("Картинка", '/bread-object/' ~ object.id ~ '?show=image', true, 'link') }}
-        {{ macros.btn("Описание", '/bread-object/' ~ object.id ~ '?show=info', true, 'link') }}
-    </div>
-    <div class="frame" style="border: 2px solid #000; padding: 10px; margin: 10px; border-radius: 5px; background-color: #f8f8f8; overflow: hidden;">
-        {{ description }}
-    </div>
-    {% if is_image or is_info %}
-        <div class="frame" style="border: 2px solid #000; padding: 10px; margin: 10px; border-radius: 5px; background-color: #f8f8f8; overflow: hidden;">
-            {% block objectContent %}
-                {% if is_image %}
-                    <img src="{{ image_url }}" class="picture">
-                {% elseif is_info %}
-                    {{ info }}
-                {% endif %}
-            {% endblock %}
-        </div>
-    {% endif %}
-{% endblock %}
+	Сообщение из сессии:
+	{{my_session_message}}
+	<br>
+	Последние сообщения:
+
+	<br>
+	{% for m in messages %}
+		{{m}}<br>
+	{%endfor %}
+</hr>
+<h1>{{ title }}</h1>
+<div class="d-flex justify-content-center mt-2">
+	{{ macros.btn("Картинка", '/bread-object/' ~ object.id ~ '?show=image', true, 'link') }}
+	{{ macros.btn("Описание", '/bread-object/' ~ object.id ~ '?show=info', true, 'link') }}
+</div>
+<div class="frame" style="border: 2px solid #000; padding: 10px; margin: 10px; border-radius: 5px; background-color: #f8f8f8; overflow: hidden;">
+	{{ description }}
+</div>
+{% if is_image or is_info %}
+	<div class="frame" style="border: 2px solid #000; padding: 10px; margin: 10px; border-radius: 5px; background-color: #f8f8f8; overflow: hidden;">
+		{% block objectContent %}
+			{% if is_image %}
+				<img src="{{ image_url }}" class="picture">
+			{% elseif is_info %}
+				{{ info }}
+			{% endif %}
+		{% endblock %}
+	</div>
+{% endif %}{% endblock %}

@@ -38,10 +38,50 @@
 							<a class="nav-link" href="/bread-variants">Управление типами</a>
 						</li>
 					</ul>
+					<form action="/set-welcome/">
+						<input type="text" name="message" class="form-control mr-2 ml-2">
+					</form>
 				</div>
 			</div>
 		</nav>
-		<div class="container pt-3 pb-3"> {% block content %}{% endblock %}
+
+		<div class="container pt-3 pb-3">
+			<div
+				class="row">
+				<!-- Основной контент -->
+				<div class="col-lg-9"> {% block content %}{% endblock %}
+					</div>
+
+					<!-- Боковая панель с историей посещений -->
+					<!-- Боковая панель с историей посещений -->
+					<div class="col-lg-3">
+						<div class="card mb-4">
+							<div class="card-header bg-warning text-white">
+								<i class="fas fa-history me-2"></i>История посещений
+							</div>
+							<div class="card-body visit-history">
+								{% if visit_history is not empty %}
+									<ul class="list-unstyled">
+										{% for visit in visit_history %}
+											<li class="mb-2">
+												<a href="{{ visit.url }}" class="text-decoration-none">
+													<i class="fas fa-arrow-right me-1 text-muted"></i>
+													{{ visit.title|default(visit.url) }}
+												</a>
+												<div class="text-muted small">{{ visit.time }}</div>
+											</li>
+										{% endfor %}
+									</ul>
+								{% else %}
+									<p class="text-muted small">История посещений пуста</p>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
+
+			<!-- Подключение скриптов Bootstrap -->
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 		</body>
 	</html>
