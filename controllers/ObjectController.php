@@ -21,7 +21,6 @@ class ObjectController extends BaseBreadTwigController
                 $context['info'] = $data['info'];
                 $context['image_url'] = $data['image'];
                 
-                // Determine what to show based on GET parameter
                 $show = $_GET['show'] ?? '';
                 if ($show === 'image') {
                     $context['is_image'] = true;

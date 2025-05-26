@@ -1,7 +1,7 @@
 <?php
 require_once "BaseBreadTwigController.php";
 
-class BreadVariantController extends BaseBreadTwigController {
+class BreadVariantCreateController extends BaseBreadTwigController {
     public $template = "bread_variant.twig";
     public $title = "Типы хлеба";
 
