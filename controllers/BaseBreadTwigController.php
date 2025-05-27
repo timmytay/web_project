@@ -6,6 +6,7 @@ class BaseBreadTwigController extends TwigBaseController
     {
         $context = parent::getContext();
         $context['is_logged'] = $_SESSION['is_logged'] ?? false;
+        $context['is_admin'] = $_SESSION['is_logged'] ?? false; // можно добавить отдельную проверку на админа
         $query = $this->pdo->query("SELECT id, name, image FROM bread_variants ORDER BY name");
         $types = $query->fetchAll();
         $context['variants'] = $types;

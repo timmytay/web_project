@@ -47,6 +47,7 @@ $router->add("/404", Controller404::class)
     ->middleware(new VisitHistoryMiddleware());
 
 // Protected routes (require authentication)
+// Все маршруты для изменения данных должны быть защищены
 $router->add("/bread-object/create", BreadObjectCreateController::class)
     ->middleware(new LoginRequiredMiddleware())
     ->middleware(new VisitHistoryMiddleware());

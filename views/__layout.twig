@@ -31,12 +31,14 @@
 						<li class="nav-item">
 							<a class="nav-link" href="/search">Поиск</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/bread-object/create">Добавить хлеб</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/bread-variants">Управление типами</a>
-						</li>
+						{% if is_logged %}
+							<li class="nav-item">
+								<a class="nav-link" href="/bread-object/create">Добавить хлеб</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/bread-variants">Управление типами</a>
+							</li>
+						{% endif %}
 						{# В навигационное меню добавим #}
 						{% if is_logged %}
 							<li class="nav-item">
