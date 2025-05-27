@@ -1,7 +1,7 @@
 <?php
 require_once "BaseBreadTwigController.php";
 
-class BreadObjectUpdateController extends BaseBreadTwigController
+class BaseObjectUpdateController extends BaseBreadTwigController
 {
     public $template = "bread_object_update.twig";
 

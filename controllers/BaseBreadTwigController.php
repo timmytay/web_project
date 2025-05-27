@@ -1,9 +1,11 @@
 <?php
 
-class BaseBreadTwigController extends TwigBaseController {
-    public function getContext(): array {
+class BaseBreadTwigController extends TwigBaseController
+{
+    public function getContext(): array
+    {
         $context = parent::getContext();
-
+        $context['is_logged'] = $_SESSION['is_logged'] ?? false;
         $query = $this->pdo->query("SELECT id, name, image FROM bread_variants ORDER BY name");
         $types = $query->fetchAll();
         $context['variants'] = $types;
@@ -16,9 +18,9 @@ class BaseBreadTwigController extends TwigBaseController {
             unset($_SESSION['message_type']);
         }
 
-                // Добавляем историю посещений в контекст
+        // Добавляем историю посещений в контекст
         $context['visit_history'] = $_SESSION['visit_history'] ?? [];
-        
+
         return $context;
     }
 }

@@ -3,7 +3,7 @@
 abstract class BaseController {
     public PDO $pdo;
     public array $params;
-    private static $sessionStarted = false; // Track if session was started
+    private static $sessionInitialized = false; // Track if session was initialized
 
     public function setPDO(PDO $pdo) {
         $this->pdo = $pdo;
@@ -19,10 +19,12 @@ abstract class BaseController {
 
     public function process_response() {
         // Initialize session only once per request
-        if (!self::$sessionStarted) {
-            session_set_cookie_params(60*60*10); // 10 hours
-            session_start();
-            self::$sessionStarted = true;
+        if (!self::$sessionInitialized) {
+            if (session_status() === PHP_SESSION_NONE) {
+                session_set_cookie_params(60*60*10); // 10 hours
+                session_start();
+            }
+            self::$sessionInitialized = true;
         }
 
         $method = $_SERVER['REQUEST_METHOD'];

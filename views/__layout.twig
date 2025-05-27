@@ -37,6 +37,18 @@
 						<li class="nav-item">
 							<a class="nav-link" href="/bread-variants">Управление типами</a>
 						</li>
+						{# В навигационное меню добавим #}
+						{% if is_logged %}
+							<li class="nav-item">
+								<form action="/logout" method="POST" class="nav-link d-inline">
+									<button type="submit" class="btn btn-link p-0">Выйти</button>
+								</form>
+							</li>
+						{% else %}
+							<li class="nav-item">
+								<a class="nav-link" href="/login">Войти</a>
+							</li>
+						{% endif %}
 					</ul>
 					<form action="/set-welcome/">
 						<input type="text" name="message" class="form-control mr-2 ml-2">
@@ -46,14 +58,9 @@
 		</nav>
 
 		<div class="container pt-3 pb-3">
-			<div
-				class="row">
-				<!-- Основной контент -->
+			<div class="row">
 				<div class="col-lg-9"> {% block content %}{% endblock %}
 					</div>
-
-					<!-- Боковая панель с историей посещений -->
-					<!-- Боковая панель с историей посещений -->
 					<div class="col-lg-3">
 						<div class="card mb-4">
 							<div class="card-header bg-warning text-white">

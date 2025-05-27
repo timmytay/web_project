@@ -13,6 +13,8 @@ require_once '../controllers/BreadVariantDeleteController.php';
 require_once '../controllers/BaseObjectUpdateController.php';
 require_once '../controllers/BreadVariantUpdateController.php';
 require_once '../controllers/SetWelcomeController.php';
+require_once '../controllers/LoginController.php';
+require_once '../controllers/LogoutController.php';
 require_once '../middlewares/LoginRequiredMiddleware.php';
 require_once '../middlewares/VisitHistoryMiddleware.php';
 
@@ -25,48 +27,52 @@ $twig->addExtension(new \Twig\Extension\DebugExtension());
 $pdo = new PDO("mysql:host=localhost;dbname=bakery;charset=utf8", "root", "");
 $router = new Router($twig, $pdo);
 
-// Главная страница
+// Public routes (no authentication required)
 $router->add("/", MainController::class)
     ->middleware(new VisitHistoryMiddleware());
 
-// Страница объекта хлеба
-$router->add("/bread-object/(?P<id>\d+)", ObjectController::class)
+$router->add("/login", LoginController::class)
     ->middleware(new VisitHistoryMiddleware());
 
-// Поиск
+$router->add("/logout", LogoutController::class)
+    ->middleware(new VisitHistoryMiddleware());
+
 $router->add("/search", SearchController::class)
     ->middleware(new VisitHistoryMiddleware());
 
-// Создание объекта хлеба (требуется авторизация)
+$router->add("/bread-object/(?P<id>\d+)", ObjectController::class)
+    ->middleware(new VisitHistoryMiddleware());
+
+$router->add("/404", Controller404::class)
+    ->middleware(new VisitHistoryMiddleware());
+
+// Protected routes (require authentication)
 $router->add("/bread-object/create", BreadObjectCreateController::class)
     ->middleware(new LoginRequiredMiddleware())
     ->middleware(new VisitHistoryMiddleware());
 
-// Удаление варианта хлеба (требуется авторизация)
-$router->add("/bread-variant/(?P<id>\d+)/delete", BreadVariantDeleteController::class)
+$router->add("/bread-object/(?P<id>\d+)/edit", BaseObjectUpdateController::class)
     ->middleware(new LoginRequiredMiddleware())
     ->middleware(new VisitHistoryMiddleware());
 
-// Редактирование объекта хлеба (требуется авторизация)
-$router->add("/bread-object/(?P<id>\d+)/edit", BreadObjectUpdateController::class)
+$router->add("/bread-object/(?P<id>\d+)/delete", BreadObjectDeleteController::class)
     ->middleware(new LoginRequiredMiddleware())
     ->middleware(new VisitHistoryMiddleware());
 
-// Редактирование варианта хлеба (требуется авторизация)
+$router->add("/bread-variants", BreadVariantCreateController::class)
+    ->middleware(new LoginRequiredMiddleware())
+    ->middleware(new VisitHistoryMiddleware());
+
 $router->add("/bread-variant/(?P<id>\d+)/edit", BreadVariantUpdateController::class)
     ->middleware(new LoginRequiredMiddleware())
     ->middleware(new VisitHistoryMiddleware());
 
-// Управление типами хлеба
-$router->add("/bread-variants", BreadVariantCreateController::class)
+$router->add("/bread-variant/(?P<id>\d+)/delete", BreadVariantDeleteController::class)
+    ->middleware(new LoginRequiredMiddleware())
     ->middleware(new VisitHistoryMiddleware());
 
-// Установка приветственного сообщения
-$router->add("/set-welcome/", SetWelcomeController::class)
-    ->middleware(new VisitHistoryMiddleware());
-
-// Страница 404
-$router->add("/404", Controller404::class)
+$router->add("/set-welcome", SetWelcomeController::class)
+    ->middleware(new LoginRequiredMiddleware())
     ->middleware(new VisitHistoryMiddleware());
 
 $router->get_or_default(Controller404::class);
